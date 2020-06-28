@@ -3,7 +3,7 @@
 JSON Web Token(JWT)でユーザ承認するテスト用APIです
 
 ## versions
-ruby: 2.6.5
+ruby: 2.6.5<br>
 rails: 6.0.3.2
 
 ## usage
