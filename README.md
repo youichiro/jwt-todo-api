@@ -68,7 +68,8 @@ JWTの発行
 ### JWTを発行する
 
 ```
-$ curl -X POST -H "Content-Type: application/json" -d '{"email": "admin@gmail.com", "password": "password"}' -i http://localhost:3000/api/sessions
+$ curl -X POST -H "Content-Type: application/json" -i
+  -d '{"email": "admin@gmail.com", "password": "password"}' http://localhost:3000/api/sessions
 
 HTTP/1.1 200 OK
 X-Frame-Options: SAMEORIGIN
@@ -86,7 +87,8 @@ X-Runtime: 0.206253
 Vary: Origin
 Transfer-Encoding: chunked
 
-{"id":1,"name":"admin","email":"admin@gmail.com","created_at":"2020-06-28T21:43:46.344Z","updated_at":"2020-06-28T21:43:46.344Z"}
+{"id":1,"name":"admin","email":"admin@gmail.com","created_at":"2020-06-28T21:43:46.344Z",
+"updated_at":"2020-06-28T21:43:46.344Z"}
 ```
 
 レスポンスヘッダの`X-Authentication-Token`にJWTが乗っている<br>
@@ -97,15 +99,18 @@ Transfer-Encoding: chunked
 ```
 $ curl -H "Authorization: Bearer <JWT>" http://localhost:3000/api/users/1
 
-{"id":1,"name":"admin","email":"admin@gmail.com","created_at":"2020-06-28T21:43:46.344Z","updated_at":"2020-06-28T21:43:46.344Z"}%
+{"id":1,"name":"admin","email":"admin@gmail.com","created_at":"2020-06-28T21:43:46.344Z",
+"updated_at":"2020-06-28T21:43:46.344Z"}%
 ```
 
 ### JWTでタスクを作成する
 
 ```
-$ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <JWT>" -d '{"title": "hoge"}' http://localhost:3000/api/tasks
+$ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <JWT>"
+  -d '{"title": "hoge"}' http://localhost:3000/api/tasks
 
-{"id":7,"user_id":2,"title":"hoge","done":false,"created_at":"2020-06-28T23:06:47.857Z","updated_at":"2020-06-28T23:06:47.857Z"}
+{"id":7,"user_id":2,"title":"hoge","done":false,"created_at":"2020-06-28T23:06:47.857Z",
+"updated_at":"2020-06-28T23:06:47.857Z"}
 ```
 
 ### JWTでタスク一覧を取得する
@@ -113,5 +118,12 @@ $ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <JW
 ```
 $ curl -H "Authorization: Bearer <JWT>" http://localhost:3000/api/tasks
 
-[{"id":1,"user_id":2,"title":"Task0","done":true,"created_at":"2020-06-28T21:43:46.360Z","updated_at":"2020-06-28T21:43:46.360Z"},{"id":2,"user_id":2,"title":"Task1","done":false,"created_at":"2020-06-28T21:43:46.365Z","updated_at":"2020-06-28T21:43:46.365Z"},{"id":3,"user_id":2,"title":"Task2","done":true,"created_at":"2020-06-28T21:43:46.370Z","updated_at":"2020-06-28T21:43:46.370Z"},{"id":4,"user_id":2,"title":"Task3","done":false,"created_at":"2020-06-28T21:43:46.375Z","updated_at":"2020-06-28T21:43:46.375Z"},{"id":5,"user_id":2,"title":"Task4","done":true,"created_at":"2020-06-28T21:43:46.381Z","updated_at":"2020-06-28T21:43:46.381Z"},{"id":7,"user_id":2,"title":"hoge","done":false,"created_at":"2020-06-28T23:06:47.857Z","updated_at":"2020-06-28T23:06:47.857Z"}]%
+[
+  {"id":1,"user_id":2,"title":"Task0","done":true,"created_at":"2020-06-28T21:43:46.360Z","updated_at":"2020-06-28T21:43:46.360Z"},
+  {"id":2,"user_id":2,"title":"Task1","done":false,"created_at":"2020-06-28T21:43:46.365Z","updated_at":"2020-06-28T21:43:46.365Z"},
+  {"id":3,"user_id":2,"title":"Task2","done":true,"created_at":"2020-06-28T21:43:46.370Z","updated_at":"2020-06-28T21:43:46.370Z"},
+  {"id":4,"user_id":2,"title":"Task3","done":false,"created_at":"2020-06-28T21:43:46.375Z","updated_at":"2020-06-28T21:43:46.375Z"},
+  {"id":5,"user_id":2,"title":"Task4","done":true,"created_at":"2020-06-28T21:43:46.381Z","updated_at":"2020-06-28T21:43:46.381Z"},
+  {"id":7,"user_id":2,"title":"hoge","done":false,"created_at":"2020-06-28T23:06:47.857Z","updated_at":"2020-06-28T23:06:47.857Z"}
+]
 ```
