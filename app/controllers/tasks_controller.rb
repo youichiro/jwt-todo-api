@@ -1,16 +1,17 @@
 class TasksController < ApplicationController
+  include JwtAuthenticator
+  before_action :jwt_authenticate
 
   def index
-    render json: Task.all
+    render json: @current_user.tasks.all
   end
 
   def show
-    task = Task.find(params[:id])
-    render json: task
+    render json: @current_user.tasks.find(params[:id])
   end
 
   def create
-    task = Task.new(task_params)
+    task = @current_user.tasks.new(task_params)
     if task.save
       render json: task
     else
@@ -19,7 +20,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = Task.find(params[:id])
+    task = @current_user.tasks.find(params[:id])
     if task.update(task_params)
       render json: task
     else
@@ -28,7 +29,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    task = Task.find(params[:id])
+    task = @current_user.tasks.find(params[:id])
     task.destroy!
     render json: task
   end
