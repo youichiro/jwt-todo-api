@@ -11,8 +11,4 @@ class User < ApplicationRecord
   def downcase_email
     self.email = email.downcase
   end
-
-  def as_json
-    super(except: :password_digest)
-  end
 end

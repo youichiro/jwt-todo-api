@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if current_user&.authenticate(params[:password])
       jwt_token = encode(current_user.id)
       response.headers['X-Authentication-Token'] = jwt_token
-      render json: current_user
+      render json: current_user.as_json(except: :password_digest)
     else
       render json: { message: 'unauthorized'}, status: 401
     end
