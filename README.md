@@ -100,7 +100,7 @@ Transfer-Encoding: chunked
 $ curl -H "Authorization: Bearer <JWT>" http://localhost:3000/api/users/1
 
 {"id":1,"name":"admin","email":"admin@gmail.com","created_at":"2020-06-28T21:43:46.344Z",
-"updated_at":"2020-06-28T21:43:46.344Z"}%
+"updated_at":"2020-06-28T21:43:46.344Z"}
 ```
 
 ### JWTでタスクを作成する
