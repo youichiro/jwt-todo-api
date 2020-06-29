@@ -11,6 +11,7 @@ rails: 6.0.3.2
 ```bash
 git clone https://github.com/youichiro/jwt-todo-api.git
 cd jwt-todo-api
+bundle install
 echo "export MYSQL_USER='<MySQLのユーザ名>'" >> ~/.bashrc
 echo "export MYSQL_PASSWORD='<MySQLのパスワード>'" >> ~/.bashrc
 source ~/.bashrc
